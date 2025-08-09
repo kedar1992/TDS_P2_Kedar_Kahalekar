@@ -5,7 +5,7 @@ import requests
 from openai import OpenAI
 
 
-API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IjI0ZHMyMDAwMTE2QGRzLnN0dWR5LmlpdG0uYWMuaW4ifQ.zMwXMjQzRY5qReAa3jvzKD9lyPw0MZm2dbm-5tSfuW0"
+API_KEY = os.getenv("OPENAI_API_KEY")
 # Initialize the client
 
 client = OpenAI(
