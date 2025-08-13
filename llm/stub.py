@@ -6,6 +6,9 @@ from openai import OpenAI
 
 
 API_KEY = os.getenv("OPENAI_API_KEY")
+if not API_KEY:
+    print("API key not found")
+
 # Initialize the client
 
 client = OpenAI(
