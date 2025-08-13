@@ -5,7 +5,7 @@ import requests
 from openai import OpenAI
 
 
-API_KEY = os.getenv("OPENAI_API_KEY")
+API_KEY = os.environ.get("OPENAI_API_KEY")
 if not API_KEY:
     print("API key not found")
 
