@@ -5,6 +5,9 @@ import os
 API_KEY = os.getenv("OPENAI_API_KEY")
 BASE_URL = "https://aiproxy.sanand.workers.dev/openai/v1"
 
+if not API_KEY:
+    print("API key not found")
+
 # Initialize the OpenAI client
 client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
 
