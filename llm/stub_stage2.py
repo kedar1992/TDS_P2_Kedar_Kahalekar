@@ -13,12 +13,11 @@ if not API_KEY:
 client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
 
 
-def generate_analysis_code(task_text: str, schema: dict, code1: str) -> str:
+def generate_analysis_code(task_text: str, schema: dict) -> str:
     prompt = f"""
 You are a data analyst. Given the following schema:
 {schema}
-and following code that used logic to fetch data:
-{code1}
+
 And the user request:
 \"\"\"{task_text}\"\"\"
 
@@ -44,7 +43,7 @@ Generate Python code that:
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.3
+            temperature=0.2
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
