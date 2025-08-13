@@ -3,8 +3,8 @@ import os
 
 # Define the API key and base URL for the proxy
 # Fetch API key from environment
-API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IjI0ZHMyMDAwMTE2QGRzLnN0dWR5LmlpdG0uYWMuaW4ifQ.8nT_8_A1Duz7aXC-fQAN8uC5vCPQyip33tVoVUhC1OY"
-# API_KEY = os.getenv("OPENAI_API_KEY")
+# API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IjI0ZHMyMDAwMTE2QGRzLnN0dWR5LmlpdG0uYWMuaW4ifQ.8nT_8_A1Duz7aXC-fQAN8uC5vCPQyip33tVoVUhC1OY"
+API_KEY = os.getenv("OPENAI_API_KEY")
 BASE_URL = "https://aiproxy.sanand.workers.dev/openai/v1"
 
 if not API_KEY:
