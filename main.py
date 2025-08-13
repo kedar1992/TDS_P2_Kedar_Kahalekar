@@ -72,3 +72,10 @@ async def analyze_task(file: UploadFile = File(...)):
     except Exception as exec_error:
         print("Execution Error:", exec_error)
         return JSONResponse(content={"error": str(exec_error)}, status_code=500)
+
+if __name__ == "__main__":
+    import os
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
+
