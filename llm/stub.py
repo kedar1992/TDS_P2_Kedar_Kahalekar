@@ -4,7 +4,7 @@ import requests
 from openai import OpenAI
 
 # Fetch API key from environment
-# API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6IjI0ZHMyMDAwMTE2QGRzLnN0dWR5LmlpdG0uYWMuaW4ifQ.zMwXMjQzRY5qReAa3jvzKD9lyPw0MZm2dbm-5tSfuW0"
+
 API_KEY = os.getenv("OPENAI_API_KEY")
 if not API_KEY:
     raise ValueError("API key not found. Please set OPENAI_API_KEY environment variable.")
@@ -12,7 +12,7 @@ if not API_KEY:
 # Initialize OpenAI client
 client = OpenAI(
     api_key=API_KEY,
-    base_url="https://aiproxy.sanand.workers.dev/openai/v1"
+    base_url="https://aipipe.org/openai/v1"
 )
 
 def generate_code_for_data(task_text: str):
