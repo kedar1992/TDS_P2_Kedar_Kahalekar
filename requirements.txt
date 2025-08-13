@@ -6,3 +6,4 @@ requests
 pillow
 openai
 python-multipart
+beautifulsoup4
