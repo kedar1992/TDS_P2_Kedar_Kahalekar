@@ -2,7 +2,7 @@ from openai import OpenAI
 import os
 
 # Define the API key and base URL for the proxy
-API_KEY = os.environ.get("OPENAI_API_KEY")
+API_KEY = os.getenv("OPENAI_API_KEY")
 BASE_URL = "https://aiproxy.sanand.workers.dev/openai/v1"
 
 if not API_KEY:
