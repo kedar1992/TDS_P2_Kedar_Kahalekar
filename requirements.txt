@@ -7,3 +7,4 @@ pillow
 openai
 python-multipart
 beautifulsoup4
+lxml
