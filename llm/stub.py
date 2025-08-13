@@ -1,5 +1,4 @@
 import os
-import glob
 import re
 import requests
 from openai import OpenAI
