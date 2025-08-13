@@ -1,4 +1,5 @@
 from openai import OpenAI
+import os
 
 # Define the API key and base URL for the proxy
 API_KEY = os.getenv("OPENAI_API_KEY")
