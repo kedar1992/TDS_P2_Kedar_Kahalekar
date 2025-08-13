@@ -23,21 +23,22 @@ And the user request:
 \"\"\"{task_text}\"\"\"
 
 Generate Python code that:
-1. Loads the data using the same logic as before.
-2. For fetching URL bypass SSL validation
-3. Performs the analysis as per the user request.
-4. Appropriately convert column types to numeric for any requested statistical or numerical analysis. For example, convert columns to numeric where possible.
-5. If any numeric column have value such as combinition of numeric and non-numeric strings then replace non-numeric elements of value with blank but don't make entire value as blank
-6. Also don't drop any rows unless specifically asked
-7. Handles common data quality issues such as:
-   - Non-numeric values in numeric columns
-   - Missing or malformed entries
-   - Inconsistent formatting (e.g., currency symbols, commas)
-   - Unexpected data types
-8. Cleans and validates the data before performing any operations like type conversion or filtering.
-   For example, remove symbols like '$' and ',' from numeric columns and filter out non-numeric entries using regex before converting to float or int.
-9. Returns the result in a variable called analysis_result.
-10. Do not include any explanation or comments in the code.
+1. Loads the data from the given URL using pandas and BeautifulSoup.
+2. Dynamically identify columns based on their intended type from the schema:
+   - For numeric columns (int64, float64), clean values by:
+     * Removing any non-numeric characters except '.' and digits.
+     * Handling currency symbols, commas, spaces, and footnotes.
+     * Converting to numeric with errors='coerce'.
+   - For object columns that contain mixed numeric and text (e.g., '$2,923,706,026'), extract the full numeric value without truncation.
+3. Do NOT assume specific column names; use schema keys to decide cleaning logic.
+4. Do NOT drop rows unless explicitly asked.
+5. If a numeric column represents currency, keep the value in absolute units (e.g., dollars) and optionally create a helper column in billions for readability.
+6. Add validation checks:
+   - Ensure numeric columns have reasonable ranges (e.g., max > 1e9 for currency).
+   - Raise ValueError if parsing fails.
+7. Perform the requested analysis using the cleaned data.
+8. Return the results in a variable called analysis_result.
+9. Output only Python code, no explanations or comments.
 """
     try:
         response = client.chat.completions.create(
