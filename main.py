@@ -67,7 +67,7 @@ async def analyze_task(file: UploadFile = File(...)):
 
         # Step 5: Return results
         print("Analysis Result:", analysis_result)
-        response = {"Analysis_Result is-": make_json_serializable(analysis_result)}
+        response = {"Schema is ": result, "Analysis_Result is-": make_json_serializable(analysis_result)}
         return JSONResponse(content=response)
 
     except Exception as exec_error:
