@@ -37,7 +37,7 @@ def generate_analysis_code(task_text: str) -> str:
 """
     try:
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4.1-nano",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.2
         )
