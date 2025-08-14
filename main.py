@@ -44,29 +44,22 @@ async def analyze_task(file: UploadFile = File(...)):
         generated_code = generate_code_for_data(original_task)
         generated_code_data = extract_python_code(generated_code)
 
-        # Step 2: Save generated code to file
-        with open("generated_code_data.py", "w", encoding="utf-8") as f:
-            f.write(generated_code_data)
-
         # Step 3: Validate and execute the code
         ast.parse(generated_code_data)
         print(generated_code_data)
         stage1_output = execute_code(generated_code_data)
-        schema = stage1_output["schema"]
+        result = stage1_output["schema"]
         df = stage1_output["df"]
 
         print(result)
 
         # Step 4: Generate analysis code
-        analysis_code = generate_analysis_code(original_task, result,generated_code_data)
+        analysis_code = generate_analysis_code(original_task, schema, generated_code_data)
         analysis_code_clean = extract_python_code(analysis_code)
-
-        with open("generated_code_analysis.py", "w", encoding="utf-8") as f:
-            f.write(analysis_code_clean)
-
         ast.parse(analysis_code_clean)
         print(analysis_code_clean)
-        analysis_result = execute_code2(analysis_code_clean)
+        analysis_result = execute_code2(analysis_code_clean, df)
+
 
         # Step 5: Return results
         print("Analysis Result:", analysis_result)
