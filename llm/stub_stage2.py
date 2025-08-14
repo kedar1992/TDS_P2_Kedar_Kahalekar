@@ -13,16 +13,17 @@ if not API_KEY:
 client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
 
 
-def generate_analysis_code(task_text: str, schema: dict) -> str:
+def generate_analysis_code(task_text: str, schema: dict, code1: str) -> str:
     prompt = f"""
 You are a data analyst. Given the following schema:
 {schema}
-
+and following code that used logic to fetch data:
+{code1}
 And the user request:
 {task_text}
 
 Generate Python code that:
-1. Loads the data from the given URL using pandas and BeautifulSoup.
+1. Loads the data from the given sourse using pandas and BeautifulSoup.
 2. Dynamically identify columns based on their intended type from the schema:
    - For numeric columns (int64, float64), clean values by:
      * Removing any non-numeric characters except '.' and digits.
