@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile, body
+from fastapi import FastAPI, File, UploadFile, Body
 from fastapi.responses import JSONResponse
 from llm.stub import generate_code_for_data
 from llm.stub_stage2 import generate_analysis_code
