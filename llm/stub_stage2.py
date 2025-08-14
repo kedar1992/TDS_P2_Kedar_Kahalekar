@@ -13,15 +13,14 @@ if not API_KEY:
 client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
 
 
-def generate_analysis_code(task_text: str, code1: str, column_names: List[str]) -> str:
-    column_str = ", ".join(column_names)
+def generate_analysis_code(task_text: str) -> str:
     prompt = f"""You are a data analyst. 
         You are given a pandas DataFrame named `df`. 
         Write Python code to perform analytical tasks as per User request:
         {task_text}
         
         Strict Rules to follow:
-        The only use provided dataframe df Do NOT reload or fetch data.
+        The only use provided dataframe df Do NOT reload or fetch data again in this code.
         If any numeric column keep the value in absolute units
         Do NOT drop rows unless explicitly asked.
         Use only the column names provided in the given dataframe Do not invent or infer any other column names.:
