@@ -52,15 +52,15 @@ async def analyze_task(file: UploadFile = File(...)):
         result = stage1_output["schema"]
         df = stage1_output["df"]
 
-        print("Printing schema")
-        print(result)
 
         # Step 4: Generate analysis code
         analysis_code = generate_analysis_code(original_task, generated_code_data)
         analysis_code_clean = extract_python_code(analysis_code)
+        print("Analysis Code Data")
+        print(analysis_code_clean)
+        
         ast.parse(analysis_code_clean)
         analysis_result = execute_code2(analysis_code_clean, df)
-
 
         # Step 5: Return results
         print("Analysis Result:", analysis_result)
