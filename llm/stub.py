@@ -25,13 +25,12 @@ def generate_code_for_data(task_text: str):
         "- Reads the data into a pandas DataFrame named df.\n"
         "- Normalize column names: lowercase, strip, replace non-alphanumerics with underscores.\n"
         "- Identify dtypes; build a dict dtypes_map of {normalized_col: dtype}.\n"
-        "- Save df to '/tmp/stage1.parquet' with the normalized columns.\n"
         "- Assign to a variable named 'result' the JSON-serializable dict:\n"
         "    {'columns': list(df.columns), 'dtypes': dtypes_map}\n"
         "Output only Python code, no explanations."
-        f"Task: {task_text}\n\n"
-        "Python Code:"
-    )
+        f"\nTask:\n{task_text}\n\nPython Code:"
+)
+
 
     try:
         response = client.chat.completions.create(
