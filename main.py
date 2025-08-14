@@ -51,7 +51,10 @@ async def analyze_task(file: UploadFile = File(...)):
         # Step 3: Validate and execute the code
         ast.parse(generated_code_data)
         print(generated_code_data)
-        result = execute_code(generated_code_data)
+        stage1_output = execute_code(generated_code_data)
+        schema = stage1_output["schema"]
+        df = stage1_output["df"]
+
         print(result)
 
         # Step 4: Generate analysis code
