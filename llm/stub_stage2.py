@@ -25,8 +25,8 @@ def generate_analysis_code(task_text: str) -> str:
         Do NOT drop rows unless explicitly asked.
         Use only the column names provided in the given dataframe Do not invent or infer any other column names.:
            - For numeric columns (int64, float64), clean values by:
-             * Removing any non-numeric characters except '.' and digits.
-             * Handling currency symbols, commas, spaces, and footnotes.
+             * Removing any non-numeric characters except '.' and digits
+             * Remove currency symbols, commas, spaces, and footnotes; keep digits and '.'
            - For object columns that contain mixed numeric and text (e.g., '$2,923,706,026'), just keep the full numeric value and remove characters or symbols
         Put the result in a variable called analysis_result (JSON-serializable).
         Output only Python code, no explanations or comments.
