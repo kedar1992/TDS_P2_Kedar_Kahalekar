@@ -52,6 +52,7 @@ async def analyze_task(file: UploadFile = File(...)):
         ast.parse(generated_code_data)
         print(generated_code_data)
         result = execute_code(generated_code_data)
+        print(result)
 
         # Step 4: Generate analysis code
         analysis_code = generate_analysis_code(original_task, result,generated_code_data)
