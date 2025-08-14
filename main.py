@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, body
 from fastapi.responses import JSONResponse
 from llm.stub import generate_code_for_data
 from llm.stub_stage2 import generate_analysis_code
@@ -35,9 +35,15 @@ def make_json_serializable(obj):
 app = FastAPI()
 
 @app.post("/api/")
-async def analyze_task(file: UploadFile = File(...)):
-    task_text = await file.read()
-    original_task = task_text.decode('utf-8')
+async def analyze_task(file: UploadFile = File(None), text: str = Body(None)):
+    if file:
+        original_task = (await file.read()).decode('utf-8')
+    elif text:
+        original_task = text
+    else:
+        return JSONResponse(content={"error": "No input provided"}, status_code=400)
+    
+    # Continue with your existing logic using task_text
 
     try:
         # Step 1: Generate code to read and understand data
