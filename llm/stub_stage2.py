@@ -44,7 +44,7 @@ Generate Python code that:
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.4
+            temperature=0.1
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
