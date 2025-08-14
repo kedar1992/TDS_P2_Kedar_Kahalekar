@@ -13,7 +13,8 @@ if not API_KEY:
 client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
 
 
-def generate_analysis_code(task_text: str,  code1: str) -> str:
+def generate_analysis_code(task_text: str, code1: str, column_names: List[str]) -> str:
+    column_str = ", ".join(column_names)
     prompt = f"""
 You are a data analyst. 
 You are given a pandas DataFrame named `df`. 
