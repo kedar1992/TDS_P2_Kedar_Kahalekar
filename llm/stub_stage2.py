@@ -15,23 +15,22 @@ client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
 
 def generate_analysis_code(task_text: str, code1: str, column_names: List[str]) -> str:
     column_str = ", ".join(column_names)
-    prompt = f"""
-You are a data analyst. 
-You are given a pandas DataFrame named `df`. 
-Write Python code to perform analytical tasks as per User request:
-{task_text}
-
-Strict Rules to follow:
-The only use provided dataframe df Do NOT reload or fetch data.
-If any numeric column keep the value in absolute units
-Do NOT drop rows unless explicitly asked.
-Use only the column names provided in the given dataframe Do not invent or infer any other column names.:
-   - For numeric columns (int64, float64), clean values by:
-     * Removing any non-numeric characters except '.' and digits.
-     * Handling currency symbols, commas, spaces, and footnotes.
-   - For object columns that contain mixed numeric and text (e.g., '$2,923,706,026'), just keep the full numeric value and remove characters or symbols
-Put the result in a variable called analysis_result (JSON-serializable).
-Output only Python code, no explanations or comments.
+    prompt = f"""You are a data analyst. 
+        You are given a pandas DataFrame named `df`. 
+        Write Python code to perform analytical tasks as per User request:
+        {task_text}
+        
+        Strict Rules to follow:
+        The only use provided dataframe df Do NOT reload or fetch data.
+        If any numeric column keep the value in absolute units
+        Do NOT drop rows unless explicitly asked.
+        Use only the column names provided in the given dataframe Do not invent or infer any other column names.:
+           - For numeric columns (int64, float64), clean values by:
+             * Removing any non-numeric characters except '.' and digits.
+             * Handling currency symbols, commas, spaces, and footnotes.
+           - For object columns that contain mixed numeric and text (e.g., '$2,923,706,026'), just keep the full numeric value and remove characters or symbols
+        Put the result in a variable called analysis_result (JSON-serializable).
+        Output only Python code, no explanations or comments.
 """
     try:
         response = client.chat.completions.create(
