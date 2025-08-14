@@ -10,7 +10,6 @@ def execute_code(code_str):
     try:
         exec(code_str, shared_scope, shared_scope)
         return {
-            "schema": shared_scope.get("result"),
             "df": shared_scope.get("df")
         }
     except Exception as e:
