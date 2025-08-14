@@ -55,16 +55,17 @@ async def analyze_task(file: UploadFile = File(...)):
         print("Printing schema")
         print(result)
 
-        # Step 4: Generate analysis code
-        analysis_code = generate_analysis_code(original_task, result, generated_code_data)
-        analysis_code_clean = extract_python_code(analysis_code)
-        ast.parse(analysis_code_clean)
-        analysis_result = execute_code2(analysis_code_clean, df)
+        # # Step 4: Generate analysis code
+        # analysis_code = generate_analysis_code(original_task, result, generated_code_data)
+        # analysis_code_clean = extract_python_code(analysis_code)
+        # ast.parse(analysis_code_clean)
+        # analysis_result = execute_code2(analysis_code_clean, df)
 
 
-        # Step 5: Return results
-        print("Analysis Result:", analysis_result)
-        response = {"Schema is ": result, "Analysis_Result is-": make_json_serializable(analysis_result)}
+        # # Step 5: Return results
+        # print("Analysis Result:", analysis_result)
+        # response = {"Schema is ": result, "Analysis_Result is-": make_json_serializable(analysis_result)}
+        response = {"Schema is ": result, "code is -": generated_code_data}
         return JSONResponse(content=response)
 
     except Exception as exec_error:
