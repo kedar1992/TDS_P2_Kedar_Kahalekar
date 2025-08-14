@@ -28,6 +28,10 @@ def generate_analysis_code(task_text: str) -> str:
              * Removing any non-numeric characters except '.' and digits
              * Remove currency symbols, commas, spaces, and footnotes; keep digits and '.'
            - For object columns that contain mixed numeric and text (e.g., '$2,923,706,026'), just keep the full numeric value and remove characters or symbols
+        - If the user asks for a chart or visualization:
+            * Generate the plot using matplotlib impot any required lib like matplotlib.pyplot as plt, io, base64
+            * Save the figure to an in-memory buffer (BytesIO) as PNG.
+            * Encode the image in Base64 and prefix with "data:image/png;base64,".
         Put the final results for each question into a Python list  named analysis_result.
         Output only Python code, no explanations or comments.
 """
