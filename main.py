@@ -68,7 +68,8 @@ async def analyze_task(file: UploadFile = File(...)):
 
         # Step 5: Return results
         print("Analysis Result:", analysis_result)
-        response = {"Analysis_Result is-": make_json_serializable(analysis_result)}
+        #response = {"Analysis_Result is-": make_json_serializable(analysis_result)}
+        response = {"Analysis_Result is-": analysis_result}
         # response = {"Schema is ": make_json_serializable(result),"code is -": generated_code_data}
 
         return JSONResponse(content=response)
