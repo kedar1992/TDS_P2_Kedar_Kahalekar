@@ -19,12 +19,12 @@ def generate_code_for_data(task_text: str):
 
     prompt = (
         "You are a Python data analyst. Based on the following task description, "
-        "parse the information & separate source info from analytical actions.\n"
+        "parse the information & identify source info\n"
         "Generate Python code that:\n"
         "- Detects if the source is a URL, CSV, or JSON. If URL, use requests with verify=False.\n"
         "- Reads the data into a pandas DataFrame named df.\n"
-        "- Normalize column names: lowercase, strip, replace non-alphanumerics with underscores.\n"
-        "- Identify dtypes; build a dict dtypes_map of {normalized_col: dtype}.\n"
+        "- No Analytical action is needed strictly at this point df.\n"
+        "- Identify dtypes; build a dict dtypes_map of {col: dtype}.\n"
         "- Assign to a variable named 'result' the JSON-serializable dict:\n"
         "    {'columns': list(df.columns), 'dtypes': dtypes_map}\n"
         "Output only Python code, no explanations."
