@@ -25,7 +25,7 @@ def generate_code_for_data(task_text: str):
         "- Reads the data into a pandas DataFrame named df.\n"
         "- No Analytical action is needed strictly at this point df.\n"
         "- Identify dtypes; build a dict dtypes_map of {col: dtype}.\n"
-        "- Assign to a variable named 'result' the JSON-serializable dict:\n"
+        "- Code should produce 2 outputs with variable names as result and df. result should have column names and their dtypes. df should have read dataframe\n"
         "    {'columns': list(df.columns), 'dtypes': dtypes_map}\n"
         "Output only Python code, no explanations."
         f"\nTask:\n{task_text}\n\nPython Code:"
