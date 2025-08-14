@@ -25,23 +25,19 @@ Stage-1 code (for loading and cleaning data):
 User request:
 {task_text}
 
-STRICT RULES:
-1) Reuse the Stage-1 code logic for loading and cleaning data. Do NOT re-invent or fetch data differently.
-2) Do NOT add new imports for scraping or HTTP; rely on Stage-1 approach.
-3) Use ONLY columns in schema['columns'].
-4) Perform the requested analysis on the cleaned DataFrame from Stage-1.
-5) Put the final result in a variable called analysis_result (JSON-serializable).
-6) Output only Python code, no explanations or comments.
-
-7). Use only the column names provided in the schema dictionary. Do not invent or infer any other column names.:
+Strict Rules to follow:
+The DataFrame from Stage-1 is already available as 'df'. Do NOT reload or fetch data.
+Perform the requested analysis using only df and the schema columns.
+If any numeric column keep the value in absolute units
+Put the result in a variable called analysis_result (JSON-serializable).
+Output only Python code, no explanations.
+Do NOT drop rows unless explicitly asked.
+Use only the column names provided in the schema dictionary. Do not invent or infer any other column names.:
    - For numeric columns (int64, float64), clean values by:
      * Removing any non-numeric characters except '.' and digits.
      * Handling currency symbols, commas, spaces, and footnotes.
    - For object columns that contain mixed numeric and text (e.g., '$2,923,706,026'), extract the full numeric value without truncation.
-8). Do NOT drop rows unless explicitly asked.
-9). If any numeric column keep the value in absolute units
-10). Return the results in a variable called analysis_result.
-11). Output only Python code, no explanations or comments.
+Output only Python code, no explanations or comments.
 """
     try:
         response = client.chat.completions.create(
