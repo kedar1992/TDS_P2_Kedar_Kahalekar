@@ -28,8 +28,8 @@ def make_json_serializable(obj):
         return {k: make_json_serializable(v) for k, v in obj.items()}
     elif isinstance(obj, list):
         return [make_json_serializable(i) for i in obj]
-    else:
-        return obj
+    elif isinstance(obj, pd.api.extensions.ExtensionDtype):
+        return str(obj)
 
 
 app = FastAPI()
