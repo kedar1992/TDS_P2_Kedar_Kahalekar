@@ -24,7 +24,7 @@ And the user request:
 
 Generate Python code that:
 1. Loads the data from the given sourse using pandas and BeautifulSoup.
-2. Dynamically identify columns based on their intended type from the schema:
+2. Use only the column names provided in the schema dictionary. Do not invent or infer any other column names.:
    - For numeric columns (int64, float64), clean values by:
      * Removing any non-numeric characters except '.' and digits.
      * Handling currency symbols, commas, spaces, and footnotes.
