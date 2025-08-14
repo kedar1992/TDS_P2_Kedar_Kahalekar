@@ -21,7 +21,7 @@ def generate_code_for_data(task_text: str):
         "You are a Python data analyst. Based on the following task description, "
         "parse the information & identify source info\n"
         "Generate Python code that:\n"
-        "- Detects if the source is a URL, CSV, or JSON. If URL, use requests with verify=False.\n"
+        "- Detects if the source is a URL, CSV, or JSON. If URL, load securely (default TLS verification).\n"
         "- Reads the data into a pandas DataFrame named df.\n"
         "- No Analytical action is needed strictly at this point df.\n"
         "- Code should produce 1 output with variable names as df df should have read dataframe\n"
