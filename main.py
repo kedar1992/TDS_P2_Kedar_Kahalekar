@@ -52,9 +52,10 @@ async def analyze_task(file: UploadFile = File(...)):
         df = stage1_output["df"]
 
         column_names = list(df.columns)
+        print(column_names)
 
         # Step 4: Generate analysis code
-        analysis_code = generate_analysis_code(original_task, generated_code_data, column_names)
+        analysis_code = generate_analysis_code(original_task)
         analysis_code_clean = extract_python_code(analysis_code)
         print("Analysis Code Data")
         print(analysis_code_clean)
