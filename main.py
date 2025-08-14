@@ -49,7 +49,6 @@ async def analyze_task(file: UploadFile = File(...)):
         print("Generated Code Data")
         print(generated_code_data)
         stage1_output = execute_code(generated_code_data)
-        result = stage1_output["schema"]
         df = stage1_output["df"]
 
 
