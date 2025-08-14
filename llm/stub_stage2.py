@@ -13,12 +13,9 @@ if not API_KEY:
 client = OpenAI(api_key=API_KEY, base_url=BASE_URL)
 
 
-def generate_analysis_code(task_text: str, schema: dict, code1: str) -> str:
+def generate_analysis_code(task_text: str,  code1: str) -> str:
     prompt = f"""
 You are a data analyst.
-Schema (from Stage-1, normalized columns): 
-{schema}
-
 Stage-1 code (for loading and cleaning data):
 {code1}
 
@@ -27,7 +24,7 @@ User request:
 
 Strict Rules to follow:
 The DataFrame from Stage-1 is already available as 'df'. Do NOT reload or fetch data.
-Perform the requested analysis using only df and the schema columns.
+Perform the requested analysis using only df.
 If any numeric column keep the value in absolute units
 Put the result in a variable called analysis_result (JSON-serializable).
 Output only Python code, no explanations.
