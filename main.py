@@ -87,6 +87,6 @@ async def analyze_task(file: UploadFile = File(None), text: str = Body(None)):
 if __name__ == "__main__":
     import os
     import uvicorn
-    port = int(os.environ.get("PORT", 8000))
+    port = int(os.environ.get("PORT", 8002))
     uvicorn.run("main:app", host="0.0.0.0", port=port)
 
