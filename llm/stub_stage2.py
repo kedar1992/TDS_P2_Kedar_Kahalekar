@@ -30,21 +30,20 @@ Generate Python code that:
      * Handling currency symbols, commas, spaces, and footnotes.
      * Converting to numeric with errors='coerce'.
    - For object columns that contain mixed numeric and text (e.g., '$2,923,706,026'), extract the full numeric value without truncation.
-3. Do NOT assume specific column names; use schema keys to decide cleaning logic.
-4. Do NOT drop rows unless explicitly asked.
-5. If a numeric column represents currency, keep the value in absolute units (e.g., dollars) and optionally create a helper column in billions for readability.
-6. Add validation checks:
+3. Do NOT drop rows unless explicitly asked.
+4. If any numeric column keep the value in absolute units
+5. Add validation checks:
    - Ensure numeric columns have reasonable ranges (e.g., max > 1e9 for currency).
    - Raise ValueError if parsing fails.
-7. Perform the requested analysis using the cleaned data.
-8. Return the results in a variable called analysis_result.
-9. Output only Python code, no explanations or comments.
+6. Perform the requested analysis using the cleaned data.
+7. Return the results in a variable called analysis_result.
+8. Output only Python code, no explanations or comments.
 """
     try:
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.1
+            temperature=0.2
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
