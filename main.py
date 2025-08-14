@@ -72,7 +72,7 @@ async def analyze_task(file: UploadFile = File(...)):
         response = {"Analysis_Result is-": analysis_result}
         # response = {"Schema is ": make_json_serializable(result),"code is -": generated_code_data}
 
-        return JSONResponse(content=response)
+        return JSONResponse(content=analysis_result)
 
     except Exception as exec_error:
         print("Execution Error:", exec_error)
