@@ -34,14 +34,32 @@ def make_json_serializable(obj):
 
 app = FastAPI()
 
+
 @app.post("/api/")
-async def analyze_task(file: UploadFile = File(None), text: str = Body(None)):
-    if file:
-        original_task = (await file.read()).decode('utf-8')
-    elif text:
-        original_task = text
-    else:
-        return JSONResponse(content={"error": "No input provided"}, status_code=400)
+async def analyze_task(
+    file: UploadFile = File(None),
+    text: str = Body(None),
+    request: Request = None
+):
+    try:
+        if file:
+            original_task = (await file.read()).decode('utf-8')
+        elif text:
+            original_task = text
+        else:
+            # Try to extract 'question' from raw JSON
+            body = await request.json()
+            original_task = body.get("question")
+
+        if not original_task:
+            return JSONResponse(content={"error": "No input provided"}, status_code=400)
+
+        # Continue with your existing logic...
+        # (generate_code_for_data, execute_code, etc.)
+
+    except Exception as exec_error:
+        return JSONResponse(content={"error": str(exec_error)}, status_code=500)
+
     
     # Continue with your existing logic using task_text
 
