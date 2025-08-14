@@ -53,9 +53,12 @@ async def analyze_task(file: UploadFile = File(...)):
 
         column_names = list(df.columns)
         print(column_names)
+        schema = {c: str(df[c].dtype) for c in column_names}
+        analysis_instructions = (f"{original_task}\n\n" f"Use ONLY these columns from df (with dtypes): {schema}\n" "Do not reference any other column names.")
+
 
         # Step 4: Generate analysis code
-        analysis_code = generate_analysis_code(original_task)
+        analysis_code = generate_analysis_code(analysis_instructions)
         analysis_code_clean = extract_python_code(analysis_code)
         print("Analysis Code Data")
         print(analysis_code_clean)
