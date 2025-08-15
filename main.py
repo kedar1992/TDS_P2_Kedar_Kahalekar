@@ -35,26 +35,15 @@ def make_json_serializable(obj):
 
 app = FastAPI()
 
+from fastapi import Request
+
 @app.post("/api/")
-async def analyze_task(request: Request, file: UploadFile = File(None)):
-    try:
-        if file:
-            original_task = (await file.read()).decode('utf-8')
-        else:
-            body = await request.json()
-            original_task = body.get("text") or body.get("question")
-
-        if not original_task:
-            return JSONResponse(content={"error": "No input provided"}, status_code=400)
-
-        # Continue with your existing logic using original_task...
-
-    except Exception as exec_error:
-        return JSONResponse(content={"error": str(exec_error)}, status_code=500)
-
-
+async def handle_request(request: Request):
+    body = await request.body()  # Read raw bytes once
+    original_task = body.decode("utf-8")  # If it's a text file
     
-    # Continue with your existing logic using task_text
+    print("Printing original Task")
+    print(original_task)
 
     try:
         # Step 1: Generate code to read and understand data
