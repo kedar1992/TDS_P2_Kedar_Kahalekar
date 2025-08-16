@@ -31,7 +31,7 @@ def generate_analysis_code(task_text: str) -> str:
         - If the user asks for a chart or visualization:
             * Generate the plot using matplotlib impot any required lib like matplotlib.pyplot as plt, io, base64
             * Save the figure to an in-memory buffer (BytesIO) as PNG with size <100KB.
-            * Encode the image in Base64 and prefix with "data:image/png;base64,".
+            * Encode the image in Base64 and without prefix "data:image/png;base64,".
         Return a Python dictionary with variable name as analysis_result, with the keys based on analytical task to be performed). Do not return a list or tuple. Only return a dict with the required keys.
         Output only Python code, no explanations or comments.
 """
