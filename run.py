@@ -1,22 +1,17 @@
+import subprocess
 import sys
-import requests
 
-def main():
-    if len(sys.argv) != 2:
-        print("Usage: python run.py <url>")
-        return
+url = sys.argv[1]
 
-    url = sys.argv[1]
+curl_command = [
+    "curl",
+    url,
+    "-F", "questions.txt=@questions.txt",
+    "-F", "edges.csv=@edges.csv",
+]
 
-    # Load input from file (e.g., questions.txt or input.txt)
-    with open("questions.txt", "r") as f:
-        payload = f.read()
-
-    # Send as plain text
-    response = requests.post(url, data=payload)
-
-    print(response.text)
-
-if __name__ == "__main__":
-    main()
-
+try:
+    result = subprocess.run(curl_command, capture_output=True, text=True, check=True)
+    print(result.stdout)
+except subprocess.CalledProcessError as e:
+    print(f"Error: {e.stderr}")
