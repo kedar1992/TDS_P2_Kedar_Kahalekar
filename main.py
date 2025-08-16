@@ -146,9 +146,7 @@ async def handle_request(request: Request):
         analysis_result = execute_code2(analysis_code_clean, df)
 
         # Make sure we return JSON
-        return JSONResponse(
-            content={"analysis_result": make_json_serializable(analysis_result)}
-        )
+        return JSONResponse(content=make_json_serializable(analysis_result))
 
     except Exception as exec_error:
         # Log to stdout for Render logs & examiner visibility
